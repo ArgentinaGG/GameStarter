@@ -1,0 +1,18 @@
+{
+    "name": "gg.argentina.gamestarter.Editor",
+    "rootNamespace": "gg.argentina.gamestarter.Editor",
+    "references": [
+        "GUID:0247ca3e796ee9d4e83f2cac8fc54ec8"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

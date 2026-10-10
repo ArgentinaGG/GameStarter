@@ -1,0 +1,14 @@
+{
+  "name": "gg.argentina.gamestarter",
+  "version": "1.0.0",
+  "displayName": "GameStarter",
+  "description": "Reusable modules and setup tools for Unity games.",
+  "unity": "6000.0",
+  "dependencies": {
+    "com.unity.nuget.newtonsoft-json": "3.2.2"
+  },
+  "author": {
+    "name": "Ator9",
+    "url": "https://github.com/Ator9/Multiplayer"
+  }
+}
