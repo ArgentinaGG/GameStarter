@@ -4,7 +4,7 @@ GameStarter is a reusable foundation for Unity that provides a base structure an
 
 # Installation
 
-1. Start a new Unity project.
+1. Open a Unity project.
 
 2. Package Manager > Package Manager > Add package from git URL: 
 
