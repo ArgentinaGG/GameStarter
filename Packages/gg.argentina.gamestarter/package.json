@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "displayName": "GameStarter",
   "description": "Reusable modules and tools for Unity games.",
+  "documentationUrl": "https://github.com/ArgentinaGG/GameStarter#readme",
   "unity": "6000.0",
   "dependencies": {
     "com.unity.nuget.newtonsoft-json": "3.2.2"
