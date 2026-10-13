@@ -1,8 +1,6 @@
 # GameStarter
 
-GameStarter is a reusable foundation for Unity.
-The idea is to provide a base for your game that you can use in any project.
-It includes a basic structure, some useful scripts, and a few examples of how to use them.
+GameStarter is a reusable foundation for Unity that provides a base structure and some useful scripts to help you get started with your game development projects.
 
 # Installation
 
