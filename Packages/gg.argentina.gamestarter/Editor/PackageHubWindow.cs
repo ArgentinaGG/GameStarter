@@ -12,11 +12,12 @@ namespace gg.argentina.gamestarter.Editor
 {
     public sealed class PackageHubWindow : EditorWindow
     {
-        private const string LocalizationFolder = "Assets/GameStarter/Localization";
+        private const string LocalizationFolder = "Assets/Modules/Localization";
         private const string TranslationsFolder = LocalizationFolder + "/Translations";
         private const string ConfigPath = LocalizationFolder + "/LocalizationConfig.asset";
         private const string EnglishPath = TranslationsFolder + "/en.json";
         private const string SpanishPath = TranslationsFolder + "/es.json";
+        private static readonly string[] CommonFolders = { "Modules", "Prefabs", "Resources", "Scripts" };
 
         public static void Open()
         {
@@ -27,7 +28,27 @@ namespace gg.argentina.gamestarter.Editor
         {
             DrawPackageInformation();
             EditorGUILayout.Space();
+            DrawProjectStructure();
+            EditorGUILayout.Space();
             DrawLocalizationModule();
+        }
+
+        private static void DrawProjectStructure()
+        {
+            EditorGUILayout.LabelField("Project Structure", EditorStyles.boldLabel);
+            EditorGUILayout.HelpBox("Create the common project folders directly under Assets. Existing folders will be left unchanged.", MessageType.Info);
+
+            if (GUILayout.Button("Create Common Folders"))
+            {
+                foreach (string folder in CommonFolders)
+                {
+                    string folderPath = "Assets/" + folder;
+                    if (!AssetDatabase.IsValidFolder(folderPath))
+                        AssetDatabase.CreateFolder("Assets", folder);
+                }
+
+                AssetDatabase.Refresh();
+            }
         }
 
         private static void DrawPackageInformation()

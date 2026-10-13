@@ -16,7 +16,7 @@ MonoBehaviour:
   languages:
   - localeCode: en
     displayName: English
-    translations: {fileID: 4900000, guid: a15305f49b424a14d9a9838127834986, type: 3}
+    translations: {fileID: 4900000, guid: 5e8c4182ac6f21c46b9a2d8b700d77b9, type: 3}
   - localeCode: es
     displayName: "Espa\xF1ol"
-    translations: {fileID: 4900000, guid: 81cdea944acabec4aa2a6f5d7945c135, type: 3}
+    translations: {fileID: 4900000, guid: 41e675e5e135ea945ba69e6ce7ad7f54, type: 3}
