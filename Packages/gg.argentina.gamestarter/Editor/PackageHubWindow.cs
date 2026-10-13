@@ -19,18 +19,57 @@ namespace gg.argentina.gamestarter.Editor
         private const string SpanishPath = TranslationsFolder + "/es.json";
         private static readonly string[] CommonFolders = { "Modules", "Prefabs", "Resources", "Scripts" };
 
+        private void OnEnable()
+        {
+            CopilotSkillsInstaller.StatusChanged += Repaint;
+        }
+
+        private void OnDisable()
+        {
+            CopilotSkillsInstaller.StatusChanged -= Repaint;
+        }
+
         public static void Open()
         {
-            GetWindow<PackageHubWindow>("GameStarter");
+            PackageHubWindow window = GetWindow<PackageHubWindow>("GameStarter");
+            GetWindow<PackageHubAboutWindow>("About", false, typeof(PackageHubWindow));
+            window.Focus();
         }
 
         private void OnGUI()
         {
-            DrawPackageInformation();
-            EditorGUILayout.Space();
             DrawProjectStructure();
             EditorGUILayout.Space();
+            DrawCopilotSkills();
+            EditorGUILayout.Space();
             DrawLocalizationModule();
+        }
+
+        private static void DrawCopilotSkills()
+        {
+            EditorGUILayout.LabelField("Copilot Skills", EditorStyles.boldLabel);
+            EditorGUILayout.HelpBox("Install grill-me, grill-with-docs, and their helper skills from the latest GitHub main commit into the project root.", MessageType.Info);
+
+            if (CopilotSkillsInstaller.IsInstalling)
+            {
+                EditorGUILayout.LabelField(CopilotSkillsInstaller.Status, EditorStyles.wordWrappedLabel);
+                return;
+            }
+
+            string buttonLabel = CopilotSkillsInstaller.IsInstalled
+                ? "Update Skills from GitHub"
+                : "Install Skills in the Project";
+
+            if (GUILayout.Button(buttonLabel))
+                CopilotSkillsInstaller.InstallOrUpdate();
+
+            if (!string.IsNullOrEmpty(CopilotSkillsInstaller.Status))
+            {
+                MessageType messageType = CopilotSkillsInstaller.LastOperationFailed
+                    ? MessageType.Warning
+                    : MessageType.None;
+                EditorGUILayout.HelpBox(CopilotSkillsInstaller.Status, messageType);
+            }
         }
 
         private static void DrawProjectStructure()
@@ -48,20 +87,6 @@ namespace gg.argentina.gamestarter.Editor
                 }
 
                 AssetDatabase.Refresh();
-            }
-        }
-
-        private static void DrawPackageInformation()
-        {
-            EditorGUILayout.LabelField("GameStarter", EditorStyles.largeLabel);
-            UnityPackageInfo package = UnityPackageInfo.FindForAssembly(typeof(LocalizationConfig).Assembly);
-
-            using (new EditorGUILayout.VerticalScope(EditorStyles.helpBox))
-            {
-                EditorGUILayout.LabelField("Package", package?.displayName ?? "GameStarter");
-                EditorGUILayout.LabelField("Version", package?.version ?? "Unknown");
-                EditorGUILayout.LabelField("Package ID", package?.packageId ?? "Unknown");
-                EditorGUILayout.HelpBox(package?.description ?? "Reusable modules and tools for Unity games.", MessageType.None);
             }
         }
 
