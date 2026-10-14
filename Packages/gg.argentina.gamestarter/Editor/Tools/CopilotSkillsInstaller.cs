@@ -317,7 +317,7 @@ namespace gg.argentina.gamestarter.Editor
             if (projectRoot == null)
                 throw new InvalidOperationException("Could not determine the Unity project root.");
 
-            return Path.Combine(projectRoot.FullName, ".agents");
+            return Path.Combine(projectRoot.FullName, ".github");
         }
 
         private static string GetSafePath(string root, string relativePath)
